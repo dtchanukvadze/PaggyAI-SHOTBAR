@@ -1,6 +1,6 @@
 # SHOT BAR — Tbilisi Website
 
-A production-ready Next.js 14 website for **SHOT BAR** — Tbilisi's most social cocktail & shots bar, located at 3 Egnate Ninoshvili St, near Fabrika.
+A production-ready **Next.js 14** website for SHOT BAR — a social cocktail & shots bar in Tbilisi near Fabrika.
 
 ---
 
@@ -10,112 +10,10 @@ A production-ready Next.js 14 website for **SHOT BAR** — Tbilisi's most social
 - Node.js 18+
 - npm or yarn
 
+---
+
 ### Install & Run
 
 ```bash
 npm install
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000)
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
----
-
-## 📁 Project Structure
-
-```
-shotbar/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx        # Root layout, fonts, SEO metadata, JSON-LD
-│   │   ├── page.tsx          # Main page (assembles all sections)
-│   │   └── globals.css       # Global styles, CSS variables, animations
-│   └── components/
-│       ├── layout/
-│       │   ├── Navbar.tsx    # Sticky nav with mobile menu + scroll detection
-│       │   └── Footer.tsx    # Footer with hours, address, social links
-│       └── sections/
-│           ├── HeroSection.tsx      # Full-screen hero with mouse-parallax glow
-│           ├── StatsBar.tsx         # Animated stats: rating, price, hours
-│           ├── AboutSection.tsx     # Story, highlights, hours teaser
-│           ├── ServicesSection.tsx  # 6 service cards (cocktails, shots, etc.)
-│           └── ContactSection.tsx  # Form, map, phone/WhatsApp buttons
-├── tailwind.config.ts
-├── tsconfig.json
-├── next.config.js
-└── package.json
-```
-
----
-
-## 🌐 Deploy to Vercel
-
-1. Push to GitHub
-2. Import repo at [vercel.com](https://vercel.com)
-3. Vercel auto-detects Next.js — click **Deploy**
-4. Add your custom domain (e.g. `shotbar.ge`)
-
-No environment variables required for basic deployment.
-
----
-
-## 🎨 Design System
-
-| Token | Value |
-|-------|-------|
-| Primary color | `#f59e0b` (Amber 400) |
-| Background | `#0c0a09` (Stone 950) |
-| Card bg | `rgba(28,25,23,0.8)` |
-| Display font | Playfair Display |
-| Body font | DM Sans |
-| Border radius | `16px` (rounded-2xl) |
-
----
-
-## 📞 Business Info
-
-| Field | Value |
-|-------|-------|
-| Name | SHOT BAR |
-| Address | 3 Egnate Ninoshvili St, Tbilisi 0144 |
-| Phone | +995 592 68 11 88 |
-| Google Rating | 5.0 ⭐ (23 reviews) |
-| Price Range | 10–20 ₾ |
-| Hours (Mon–Thu) | 12:00 PM – 3:00 AM |
-| Hours (Fri) | 6:00 PM – 4:00 AM |
-| Hours (Sat–Sun) | 12:00 PM – 4:00 AM |
-
----
-
-## 📈 SEO Features
-
-- Full Open Graph metadata
-- Twitter Card metadata
-- JSON-LD structured data (BarOrPub schema)
-- Local SEO keywords for Tbilisi nightlife
-- Semantic HTML throughout
-- Canonical URL
-- Robots meta
-
----
-
-## ✅ Customization Checklist
-
-- [ ] Replace `your-google-verification-code` in `layout.tsx`
-- [ ] Add real `og-image.jpg` to `/public/` (1200×630px)
-- [ ] Add real `favicon.ico` to `/public/`
-- [ ] Update Google Maps embed URL with exact coordinates
-- [ ] Add real Instagram handle to Footer
-- [ ] Connect contact form to email service (Resend / EmailJS / Formspree)
-- [ ] Set canonical URL to your real domain
-
----
-
-Built with ❤️ for SHOT BAR Tbilisi.
