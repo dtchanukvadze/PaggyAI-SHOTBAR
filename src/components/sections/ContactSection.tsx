@@ -9,15 +9,37 @@ export default function ContactSection() {
     email: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setStatus('submitting')
+
+    try {
+      // ⚠️ REPLACE THIS URL WITH YOUR ACTUAL FORMSPREE HASH ID ONCE REGISTERED
+      const response = await fetch('https://formspree.io/f/xeedbobl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      })
+
+      if (response.ok) {
+        setStatus('submitted')
+        setFormState({ name: '', phone: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setStatus('error')
+    }
   }
 
   const inputClass =
@@ -136,7 +158,7 @@ export default function ContactSection() {
                 Questions, reservations, or just want to say hi — we'll reply quickly.
               </p>
 
-              {submitted ? (
+              {status === 'submitted' ? (
                 <div className="text-center py-12">
                   <div className="text-5xl mb-4">🥂</div>
                   <h4 className="font-display text-xl text-amber-400 font-bold mb-2">Message Sent!</h4>
@@ -159,6 +181,7 @@ export default function ContactSection() {
                         required
                         placeholder="John Smith"
                         className={inputClass}
+                        disabled={status === 'submitting'}
                       />
                     </div>
                     <div>
@@ -172,6 +195,7 @@ export default function ContactSection() {
                         onChange={handleChange}
                         placeholder="+995 5XX XXX XXX"
                         className={inputClass}
+                        disabled={status === 'submitting'}
                       />
                     </div>
                   </div>
@@ -188,6 +212,7 @@ export default function ContactSection() {
                       required
                       placeholder="you@example.com"
                       className={inputClass}
+                      disabled={status === 'submitting'}
                     />
                   </div>
 
@@ -203,15 +228,27 @@ export default function ContactSection() {
                       rows={5}
                       placeholder="Tell us anything — questions, group bookings, or just hello..."
                       className={`${inputClass} resize-none`}
+                      disabled={status === 'submitting'}
                     />
                   </div>
 
+                  {status === 'error' && (
+                    <p className="text-red-400 font-body text-xs text-center">
+                      Something went wrong. Please try again or call us directly.
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full relative group bg-amber-400 hover:bg-amber-300 text-stone-900 font-body font-bold text-sm py-4 rounded-xl transition-all duration-300 tracking-widest uppercase overflow-hidden mt-2"
+                    disabled={status === 'submitting'}
+                    className="w-full relative group bg-amber-400 hover:bg-amber-300 disabled:bg-stone-700 disabled:text-stone-400 text-stone-900 font-body font-bold text-sm py-4 rounded-xl transition-all duration-300 tracking-widest uppercase overflow-hidden mt-2"
                   >
-                    <span className="relative z-10">Send Message</span>
-                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+                    <span className="relative z-10">
+                      {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                    </span>
+                    {status !== 'submitting' && (
+                      <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+                    )}
                   </button>
 
                   <p className="font-body text-stone-600 text-xs text-center">

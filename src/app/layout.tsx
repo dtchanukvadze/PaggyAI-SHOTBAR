@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       'Your next favourite bar in Tbilisi. Craft cocktails, premium shots, and a legendary social scene — just steps from Fabrika. From 10 ₾.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: './logo.jpg',
         width: 1200,
         height: 630,
         alt: 'SHOT BAR Tbilisi – Cocktails & Shots Bar',
@@ -76,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icon.ico" />
         <link rel="canonical" href="https://shotbar.ge" />
         <script
           type="application/ld+json"

@@ -58,9 +58,9 @@ export default function HeroSection() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-10 text-center pt-16 md:pt-24">
-        {/* Eyebrow - Adjusted top margin to move it down 6px on mobile / 16px on desktop gracefully */}
-        <div className="inline-flex items-center gap-3 mt-1.5 md:mt-4 mb-10 animate-fade-up delay-100">
+      <div className="relative z-10 max-w-5xl mx-auto px-10 text-center pt-20 md:pt-24 pb-16">
+        {/* Eyebrow */}
+        <div className="inline-flex items-center gap-3 mt-1.5 md:mt-4 mb-5 animate-fade-up delay-100">
           <div className="h-px w-12 bg-amber-400/60" />
           <span className="text-amber-400 font-body text-xs tracking-[0.3em] uppercase font-medium">
             Tbilisi&apos;s Social Hub · Est. Near Fabrika
@@ -109,7 +109,7 @@ export default function HeroSection() {
         </div>
 
         {/* Trust indicators */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 animate-fade-up delay-550">
+        <div className="flex flex-col sm:flex-row items-center justify-center pb-[25px] gap-6 sm:gap-10 animate-fade-up delay-550">
           {[
             { icon: '⭐', value: '5.0', label: 'Rating on Google' },
             { icon: '🌍', value: '23+', label: 'Glowing Reviews' },
@@ -127,10 +127,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="font-body text-stone-500 text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-amber-400/50 to-transparent animate-pulse" />
+      {/* Fixed and aligned Scroll cue element */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 pointer-events-none select-none">
+        <span className="font-body text-stone-500 text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+        <div className="w-px h-10 bg-gradient-to-b from-amber-400/50 to-transparent animate-pulse" />
       </div>
     </section>
   )
