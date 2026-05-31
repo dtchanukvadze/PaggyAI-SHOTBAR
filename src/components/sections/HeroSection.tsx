@@ -58,7 +58,7 @@ export default function HeroSection() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-8 text-center pt-16 md:pt-24">
+      <div className="relative z-10 max-w-5xl mx-auto px-10 text-center pt-16 md:pt-24">
         {/* Eyebrow - Adjusted top margin to move it down 6px on mobile / 16px on desktop gracefully */}
         <div className="inline-flex items-center gap-3 mt-1.5 md:mt-4 mb-10 animate-fade-up delay-100">
           <div className="h-px w-12 bg-amber-400/60" />
