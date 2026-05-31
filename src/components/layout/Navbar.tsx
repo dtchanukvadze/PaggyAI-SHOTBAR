@@ -32,13 +32,22 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'nav-scrolled py-3' : 'py-5 bg-transparent' 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 will-change-transform ${
+        scrolled 
+          ? 'nav-scrolled py-3' 
+          : menuOpen 
+            ? 'bg-stone-950/95 py-5 border-b border-amber-400/10' /* Gives iPhone a solid base backing when menu is toggled up top */
+            : 'py-5 bg-transparent' 
       }`}
+      style={{
+        // Hardware-accelerate the global layout block directly for Safari mobile layer isolation
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)'
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between ">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 group ">
+        <a href="#home" className="flex items-center gap-3 group">
           <div className="w-8 h-8 rounded-full border-2 border-amber-400 flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
             <span className="text-amber-400 group-hover:text-stone-900 font-display font-bold text-xs leading-none transition-colors duration-300">
               S
@@ -80,7 +89,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden flex flex-col gap-1.5 p-2 z-50 relative"
             aria-label="Toggle menu"
           >
             <span
@@ -96,11 +105,16 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown panel */}
       <div
-        className={`md:hidden absolute top-full left-0 right-0 bg-stone-950/98 backdrop-blur-xl border-t border-amber-400/10 transition-all duration-400 overflow-hidden ${
-          menuOpen ? 'max-h-screen py-6' : 'max-h-0'
+        className={`md:hidden absolute top-full left-0 right-0 border-t border-amber-400/10 transition-all duration-300 ease-in-out overflow-hidden ${
+          menuOpen ? 'max-h-screen py-8 opacity-100' : 'max-h-0 opacity-0'
         }`}
+        style={{
+          backgroundColor: 'rgba(12, 10, 9, 0.78)', /* Safe backing opacity */
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)', /* Strict Safari compilation requirement */
+        }}
       >
         <nav className="flex flex-col items-center gap-6 px-6">
           {navLinks.map((link) => (
@@ -108,7 +122,11 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-stone-300 hover:text-amber-400 font-body tracking-widest uppercase text-sm transition-colors duration-200"
+              className={`font-body tracking-widest uppercase text-sm transition-colors duration-200 ${
+                activeSection === link.href.replace('#', '')
+                  ? 'text-amber-400 font-medium'
+                  : 'text-stone-300 hover:text-amber-400'
+              }`}
             >
               {link.label}
             </a>

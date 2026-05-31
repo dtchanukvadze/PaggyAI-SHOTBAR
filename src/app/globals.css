@@ -198,6 +198,19 @@ select:focus {
   border-bottom: 1px solid rgba(245,158,11,0.1);
 }
 
+.mobile-nav-blur {
+  background-color: rgba(12, 10, 9, 0.75) !important;
+  
+  /* Safari requires the vendor prefix to be stated FIRST */
+  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(16px) !important;
+  
+  /* Forces iOS to isolate this container onto its own GPU layer */
+  will-change: transform, filter;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
