@@ -105,7 +105,7 @@ export default function ContactSection() {
 
             <div className="rounded-2xl overflow-hidden border border-stone-800 h-64">
               <iframe
-                src="https://maps.app.goo.gl/4NmcJFgqeFeacth8A"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2978.496104086452!2d44.8007713!3d41.7098125!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440d00748670b9%3A0xc61f823380b50967!2sSHOT%20BAR!5e0!3m2!1sen!2sge!4v1780266325934!5m2!1sen!2sge"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85) contrast(0.9)' }}
