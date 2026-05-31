@@ -33,12 +33,12 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'nav-scrolled py-3' : 'py-5 bg-transparent'
+        scrolled ? 'nav-scrolled py-3' : 'py-5 bg-transparent' 
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between ">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-3 group">
+        <a href="#home" className="flex items-center gap-3 group ">
           <div className="w-8 h-8 rounded-full border-2 border-amber-400 flex items-center justify-center group-hover:bg-amber-400 transition-colors duration-300">
             <span className="text-amber-400 group-hover:text-stone-900 font-display font-bold text-xs leading-none transition-colors duration-300">
               S

@@ -33,17 +33,17 @@ export default function HeroSection() {
         `,
       }}
     >
-      {/* Ambient orbs */}
+      {/* Mobile-optimized performance-safe ambient orbs */}
       <div
-        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-10 blur-3xl pointer-events-none"
+        className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 rounded-full opacity-10 blur-2xl pointer-events-none"
         style={{ background: 'radial-gradient(circle, #f59e0b, transparent)' }}
       />
       <div
-        className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full opacity-8 blur-3xl pointer-events-none"
+        className="absolute bottom-1/4 right-1/4 w-32 h-32 md:w-64 md:h-64 rounded-full opacity-8 blur-2xl pointer-events-none"
         style={{ background: 'radial-gradient(circle, #b45309, transparent)' }}
       />
 
-      {/* Decorative geometric lines */}
+      {/* Decorative lines */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute top-16 right-16 opacity-10 hidden lg:block" width="200" height="200" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="90" fill="none" stroke="#f59e0b" strokeWidth="0.5" />
@@ -57,13 +57,10 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        {/* Eyebrow */}
-        <div
-          className="inline-flex items-center gap-3 mb-8"
-          style={{ animation: 'fadeUp 0.6s ease-out 0.1s both' }}
-        >
+      {/* Content Container with top padding to push everything down */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-16 md:pt-24">
+        {/* Eyebrow - uses custom tailwind animation class & increased bottom margin */}
+        <div className="inline-flex items-center gap-3 mb-12 animate-fade-up-1">
           <div className="h-px w-12 bg-amber-400/60" />
           <span className="text-amber-400 font-body text-xs tracking-[0.3em] uppercase font-medium">
             Tbilisi&apos;s Social Hub · Est. Near Fabrika
@@ -72,10 +69,7 @@ export default function HeroSection() {
         </div>
 
         {/* Headline */}
-        <h1
-          className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] mb-6"
-          style={{ animation: 'fadeUp 0.7s ease-out 0.2s both' }}
-        >
+        <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] mb-6 animate-fade-up-2">
           <span className="text-stone-100 block">Where Every</span>
           <span
             className="block mt-2"
@@ -92,19 +86,13 @@ export default function HeroSection() {
         </h1>
 
         {/* Subheadline */}
-        <p
-          className="font-body text-lg sm:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed mb-10"
-          style={{ animation: 'fadeUp 0.7s ease-out 0.35s both' }}
-        >
+        <p className="font-body text-lg sm:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up-3">
           Craft cocktails. Premium shots. Legendary atmosphere. Tbilisi&apos;s most social bar — where strangers become friends and one drink turns into three. From just{' '}
           <span className="text-amber-400 font-semibold">10 ₾</span>.
         </p>
 
         {/* CTAs */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14"
-          style={{ animation: 'fadeUp 0.7s ease-out 0.45s both' }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up-4">
           <a
             href="#contact"
             className="relative group bg-amber-400 hover:bg-amber-300 text-stone-900 font-body font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 tracking-widest uppercase overflow-hidden shadow-lg shadow-amber-400/20 hover:shadow-amber-400/40"
@@ -121,10 +109,7 @@ export default function HeroSection() {
         </div>
 
         {/* Trust indicators */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10"
-          style={{ animation: 'fadeUp 0.7s ease-out 0.55s both' }}
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 animate-fade-up-5">
           {[
             { icon: '⭐', value: '5.0', label: 'Rating on Google' },
             { icon: '🌍', value: '23+', label: 'Glowing Reviews' },
