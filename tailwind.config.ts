@@ -63,17 +63,27 @@ const config: Config = {
     },
   },
   plugins: [
-    // Type applied safely here to satisfy strict mode rules
-    ({ addUtilities }: PluginAPI) => {
-      addUtilities({
-        '.delay-100': { 'animation-delay': '100ms' },
-        '.delay-200': { 'animation-delay': '200ms' },
-        '.delay-350': { 'animation-delay': '350ms' },
-        '.delay-450': { 'animation-delay': '450ms' },
-        '.delay-550': { 'animation-delay': '550ms' },
-      })
-    },
-  ],
+      ({ addUtilities }: PluginAPI) => {
+        addUtilities({
+          '.delay-100': { 'animation-delay': '100ms' },
+          '.delay-200': { 'animation-delay': '200ms' },
+          '.delay-350': { 'animation-delay': '350ms' },
+          '.delay-450': { 'animation-delay': '450ms' },
+          '.delay-550': { 'animation-delay': '550ms' },
+          
+          // --- Added mobile nav optimized blur ---
+          '.mobile-nav-blur': {
+            'background-color': 'rgba(12, 10, 9, 0.70)', /* var(--charcoal) at 70% opacity */
+            'backdrop-filter': 'blur(12px)',
+            '-webkit-backdrop-filter': 'blur(12px)',
+            'transform': 'translateZ(0)', /* Forces GPU hardware acceleration */
+            '-webkit-transform': 'translateZ(0)',
+            'backface-visibility': 'hidden',
+            '-webkit-backface-visibility': 'hidden',
+          }
+        })
+      },
+    ],
 }
 
 export default config
