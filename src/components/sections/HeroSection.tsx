@@ -57,10 +57,10 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      {/* Content Container with top padding to push everything down */}
+      {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center pt-16 md:pt-24">
-        {/* Eyebrow - uses custom tailwind animation class & increased bottom margin */}
-        <div className="inline-flex items-center gap-3 mb-12 animate-fade-up-1">
+        {/* Eyebrow - Adjusted top margin to move it down 6px on mobile / 16px on desktop gracefully */}
+        <div className="inline-flex items-center gap-3 mt-1.5 md:mt-4 mb-10 animate-fade-up delay-100">
           <div className="h-px w-12 bg-amber-400/60" />
           <span className="text-amber-400 font-body text-xs tracking-[0.3em] uppercase font-medium">
             Tbilisi&apos;s Social Hub · Est. Near Fabrika
@@ -69,7 +69,7 @@ export default function HeroSection() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] mb-6 animate-fade-up-2">
+        <h1 className="font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] mb-6 animate-fade-up delay-200">
           <span className="text-stone-100 block">Where Every</span>
           <span
             className="block mt-2"
@@ -86,13 +86,13 @@ export default function HeroSection() {
         </h1>
 
         {/* Subheadline */}
-        <p className="font-body text-lg sm:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up-3">
+        <p className="font-body text-lg sm:text-xl text-stone-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up delay-350">
           Craft cocktails. Premium shots. Legendary atmosphere. Tbilisi&apos;s most social bar — where strangers become friends and one drink turns into three. From just{' '}
           <span className="text-amber-400 font-semibold">10 ₾</span>.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up delay-450">
           <a
             href="#contact"
             className="relative group bg-amber-400 hover:bg-amber-300 text-stone-900 font-body font-bold text-sm px-8 py-4 rounded-full transition-all duration-300 tracking-widest uppercase overflow-hidden shadow-lg shadow-amber-400/20 hover:shadow-amber-400/40"
@@ -109,7 +109,7 @@ export default function HeroSection() {
         </div>
 
         {/* Trust indicators */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 animate-fade-up-5">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 animate-fade-up delay-550">
           {[
             { icon: '⭐', value: '5.0', label: 'Rating on Google' },
             { icon: '🌍', value: '23+', label: 'Glowing Reviews' },

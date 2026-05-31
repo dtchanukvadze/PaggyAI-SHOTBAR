@@ -1,69 +1,50 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-
 const highlights = [
   {
     icon: '🤗',
     title: 'The Friendliest Bar in Tbilisi',
-    description:
-      'Benjamin, our owner and bartender, makes every guest feel like a regular from the very first visit. No strangers — only friends you haven\'t met yet.',
+    description: "Benjamin, our owner and bartender, makes every guest feel like a regular from the very first visit. No strangers — only friends you haven't met yet.",
   },
   {
     icon: '🌍',
     title: 'A Global Meeting Point',
-    description:
-      'Guests from Turkey, Germany, Asia, and beyond all find their way here. SHOT BAR is where Tbilisi\'s international community gathers night after night.',
+    description: "Guests from Turkey, Germany, Asia, and beyond all find their way here. SHOT BAR is where Tbilisi's international community gathers night after night.",
   },
   {
     icon: '💸',
     title: 'Premium Taste, Honest Prices',
-    description:
-      'Great cocktails and shots shouldn\'t cost a fortune. At 10–20 ₾ per person, you get quality drinks and a world-class atmosphere without the hefty price tag.',
+    description: "Great cocktails and shots shouldn't cost a fortune. At 10–20 ₾ per person, you get quality drinks and a world-class atmosphere without the hefty price tag.",
   },
   {
     icon: '📍',
     title: 'Prime Fabrika Location',
-    description:
-      'Nestled steps from Fabrika — Tbilisi\'s legendary nightlife hub — we\'re perfectly placed at the heart of where the city comes alive after dark.',
+    description: "Nestled steps from Fabrika — Tbilisi's legendary nightlife hub — we're perfectly placed at the heart of where the city comes alive after dark.",
   },
 ]
 
 export default function AboutSection() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            el.querySelectorAll('.reveal').forEach((child) => {
-              child.classList.add('visible')
-            })
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="about" className="relative py-28 overflow-hidden">
-      {/* Background detail */}
+    <section 
+      id="about" 
+      className="relative py-28 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse 70% 50% at 10% 30%, rgba(245,158,11,0.04) 0%, transparent 60%), linear-gradient(180deg, #0c0a09 0%, #141211 50%, #0c0a09 100%)'
+      }}
+    >
+      <div className="absolute inset-0 bg-noise pointer-events-none opacity-[0.03] z-0" />
+
       <div
-        className="absolute right-0 top-0 w-1/3 h-full opacity-5 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at right center, #f59e0b, transparent 70%)',
-        }}
+        className="absolute top-1/4 right-0 w-64 h-64 md:w-96 md:h-96 rounded-full opacity-5 blur-3xl pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #f59e0b, transparent 70%)' }}
+      />
+      <div
+        className="absolute bottom-1/4 left-0 w-48 h-48 md:w-80 md:h-80 rounded-full opacity-4 blur-3xl pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #b45309, transparent 70%)' }}
       />
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="reveal mb-20 max-w-2xl">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="mb-20 max-w-2xl animate-fade-up delay-100">
           <div className="flex items-center gap-4 mb-5">
             <div className="h-px w-10 bg-amber-400" />
             <span className="text-amber-400 font-body text-xs tracking-[0.3em] uppercase">Our Story</span>
@@ -87,10 +68,8 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Two-column layout */}
         <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
-          {/* Left: story text */}
-          <div className="reveal space-y-6">
+          <div className="space-y-6 animate-fade-up delay-200">
             <p className="font-body text-stone-300 text-base leading-relaxed">
               What started as a small cocktail and shots bar near the vibrant Fabrika district has become one of Tbilisi&apos;s most-loved nightlife spots. With a perfect 5-star rating and a steady stream of returning guests — locals and tourists alike — SHOT BAR has earned its place in the city&apos;s social fabric.
             </p>
@@ -101,7 +80,6 @@ export default function AboutSection() {
               With prices starting from just 10 ₾ and a kitchen of creativity behind the bar, you get premium cocktails and signature shots that punch well above their price. Open late — until 4 AM on weekends — we&apos;re here for the full night, every night.
             </p>
 
-            {/* Quote */}
             <div className="relative pl-6 py-4 mt-8">
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-amber-400" />
               <p className="font-display text-xl text-stone-200 italic leading-snug mb-2">
@@ -111,29 +89,32 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Right: highlights grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 stagger">
-            {highlights.map((item) => (
-              <div
-                key={item.title}
-                className="reveal glass-card rounded-2xl p-6 hover:border-amber-400/30 transition-all duration-300 group cursor-default"
-              >
-                <div className="text-3xl mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {item.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {highlights.map((item, index) => {
+              const delays = ['delay-100', 'delay-200', 'delay-350', 'delay-450']
+              const chosenDelay = delays[index] || 'delay-100'
+
+              return (
+                <div
+                  key={item.title}
+                  className={`glass-card rounded-2xl p-6 hover:border-amber-400/30 transition-all duration-300 group cursor-default animate-fade-up ${chosenDelay}`}
+                >
+                  <div className="text-3xl mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
+                    {item.icon}
+                  </div>
+                  <h3 className="font-display font-bold text-stone-100 text-base mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="font-body text-stone-500 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="font-display font-bold text-stone-100 text-base mb-2 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="font-body text-stone-500 text-sm leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </div>
 
-        {/* Hours teaser */}
-        <div className="reveal">
+        <div className="animate-fade-up delay-450">
           <div className="glass-card rounded-2xl p-8 border border-amber-400/15">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>

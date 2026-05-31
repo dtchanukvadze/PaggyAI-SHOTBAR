@@ -1,9 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 
 export default function ContactSection() {
-  const ref = useRef<HTMLDivElement>(null)
   const [formState, setFormState] = useState({
     name: '',
     phone: '',
@@ -12,32 +11,12 @@ export default function ContactSection() {
   })
   const [submitted, setSubmitted] = useState(false)
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            el.querySelectorAll('.reveal').forEach((child) => {
-              child.classList.add('visible')
-            })
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In production, integrate with email service (Resend, EmailJS, etc.)
     setSubmitted(true)
   }
 
@@ -45,16 +24,26 @@ export default function ContactSection() {
     'w-full bg-stone-900 border border-stone-700 text-stone-100 font-body text-sm rounded-xl px-4 py-3.5 placeholder-stone-600 transition-all duration-200 focus:outline-none focus:border-amber-400 focus:shadow-[0_0_0_3px_rgba(245,158,11,0.12)]'
 
   return (
-    <section id="contact" className="relative py-28 overflow-hidden bg-stone-950">
-      {/* Background accent */}
+    <section 
+      id="contact" 
+      className="relative py-28 overflow-hidden"
+      style={{
+        background: 'radial-gradient(ellipse 70% 50% at 90% 80%, rgba(245,158,11,0.04) 0%, transparent 60%), linear-gradient(180deg, #0c0a09 0%, #141211 50%, #0c0a09 100%)'
+      }}
+    >
+      <div className="absolute inset-0 bg-noise pointer-events-none opacity-[0.03] z-0" />
+
       <div
-        className="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-5 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse at bottom right, #f59e0b, transparent 60%)' }}
+        className="absolute bottom-0 right-0 w-64 h-64 md:w-96 md:h-96 rounded-full opacity-5 blur-3xl pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #f59e0b, transparent 70%)' }}
+      />
+      <div
+        className="absolute top-1/3 left-1/4 w-48 h-48 md:w-80 md:h-80 rounded-full opacity-4 blur-3xl pointer-events-none z-0"
+        style={{ background: 'radial-gradient(circle, #b45309, transparent 70%)' }}
       />
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="reveal text-center mb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-16 animate-fade-up delay-100">
           <div className="flex items-center justify-center gap-4 mb-5">
             <div className="h-px w-10 bg-amber-400/60" />
             <span className="text-amber-400 font-body text-xs tracking-[0.3em] uppercase">Get in Touch</span>
@@ -64,14 +53,12 @@ export default function ContactSection() {
             Come Find Us
           </h2>
           <p className="font-body text-stone-400 text-lg max-w-lg mx-auto">
-            We&apos;re just around the corner from Fabrika. Drop by tonight — or send us a message and we&apos;ll get back to you fast.
+            We're just around the corner from Fabrika. Drop by tonight — or send us a message and we'll get back to you fast.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">
-          {/* Left: Contact info + map */}
-          <div className="reveal space-y-6">
-            {/* Quick contact cards */}
+          <div className="space-y-6 animate-fade-up delay-200">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a
                 href="tel:+995592681188"
@@ -102,7 +89,6 @@ export default function ContactSection() {
               </a>
             </div>
 
-            {/* Address card */}
             <div className="glass-card rounded-2xl p-5 flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-amber-400/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
@@ -117,10 +103,9 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Map embed */}
             <div className="rounded-2xl overflow-hidden border border-stone-800 h-64">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186.157449875473!2d44.80309814865496!3d41.70931405896777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40440d00748670b9%3A0xc61f823380b50967!2sSHOT%20BAR!5e0!3m2!1sen!2sge!4v1780256817650!5m2!1sen!2sge"
+                src="https://maps.app.goo.gl/4NmcJFgqeFeacth8A"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(0.85) contrast(0.9)' }}
@@ -132,7 +117,7 @@ export default function ContactSection() {
             </div>
 
             <a
-              href="https://maps.google.com/?q=3+Egnate+Ninoshvili+St,+Tbilisi"
+              href="https://maps.app.goo.gl/4NmcJFgqeFeacth8A"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full border border-stone-700 hover:border-amber-400/40 text-stone-300 hover:text-amber-400 font-body text-sm font-medium px-6 py-3.5 rounded-xl transition-all duration-300 tracking-wide"
@@ -144,12 +129,11 @@ export default function ContactSection() {
             </a>
           </div>
 
-          {/* Right: Contact form */}
-          <div className="reveal">
+          <div className="animate-fade-up delay-350">
             <div className="glass-card rounded-2xl p-8">
               <h3 className="font-display text-2xl font-bold text-stone-100 mb-2">Send us a Message</h3>
               <p className="font-body text-stone-400 text-sm mb-7">
-                Questions, reservations, or just want to say hi — we&apos;ll reply quickly.
+                Questions, reservations, or just want to say hi — we'll reply quickly.
               </p>
 
               {submitted ? (
@@ -157,7 +141,7 @@ export default function ContactSection() {
                   <div className="text-5xl mb-4">🥂</div>
                   <h4 className="font-display text-xl text-amber-400 font-bold mb-2">Message Sent!</h4>
                   <p className="font-body text-stone-400 text-sm">
-                    Thanks for reaching out. We&apos;ll be in touch soon — see you at the bar!
+                    Thanks for reaching out. We'll be in touch soon — see you at the bar!
                   </p>
                 </div>
               ) : (

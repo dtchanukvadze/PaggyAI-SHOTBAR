@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-
 const stats = [
   { value: '5.0★', label: 'Google Rating', sub: '23 reviews' },
   { value: '10 ₾', label: 'Starting Price', sub: 'Cocktails & Shots' },
@@ -10,51 +8,47 @@ const stats = [
 ]
 
 export default function StatsBar() {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.querySelectorAll('.reveal').forEach((child) => {
-            child.classList.add('visible')
-          })
-        }
-      },
-      { threshold: 0.2 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div
-      ref={ref}
-      className="relative border-y border-amber-400/10 bg-stone-900/40 backdrop-blur-sm"
-    >
-      {/* Subtle top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
+    <div className="relative border-y border-stone-800/80 bg-stone-900/20 backdrop-blur-md z-10">
+      {/* High-fidelity top glow line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-amber-400/25 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 stagger">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="reveal text-center group"
-            >
-              <div className="font-display text-3xl lg:text-4xl font-bold text-amber-400 mb-1 group-hover:scale-105 transition-transform duration-300">
-                {stat.value}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4">
+          {stats.map((stat, index) => {
+            const delays = ['delay-100', 'delay-150', 'delay-200', 'delay-250']
+            const chosenDelay = delays[index] || 'delay-100'
+
+            return (
+              <div
+                key={stat.label}
+                className={`text-center group cursor-default animate-fade-up ${chosenDelay}`}
+              >
+                <div 
+                  className="font-display text-3xl lg:text-4xl font-bold mb-1 transition-transform duration-300 group-hover:scale-105 inline-block"
+                  style={{
+                    background: 'linear-gradient(135deg, #fbbf24, #d97706)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  {stat.value}
+                </div>
+                <div className="font-body font-semibold text-stone-200 text-sm tracking-wide mb-0.5">
+                  {stat.label}
+                </div>
+                <div className="font-body text-stone-500 text-xs">
+                  {stat.sub}
+                </div>
               </div>
-              <div className="font-body font-semibold text-stone-200 text-sm tracking-wide mb-0.5">
-                {stat.label}
-              </div>
-              <div className="font-body text-stone-500 text-xs">{stat.sub}</div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
+
+      {/* Matching bottom glow line */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-amber-400/10 to-transparent" />
     </div>
   )
 }
